@@ -1,0 +1,244 @@
+Entity,Code,Year,lifeExpec
+Afghanistan,AFG,2018,64.486
+Africa,,2018,62.839
+Albania,ALB,2018,78.458
+Algeria,DZA,2018,76.693
+American Samoa,ASM,2018,73.679
+Americas,,2018,76.72842701
+Andorra,AND,2018,83.594
+Angola,AGO,2018,60.782
+Anguilla,AIA,2018,81.714
+Antigua and Barbuda,ATG,2018,76.885
+Argentina,ARG,2018,76.52
+Armenia,ARM,2018,74.945
+Aruba,ABW,2018,76.152
+Asia,,2018,73.381
+Australia,AUS,2018,83.281
+Austria,AUT,2018,81.434
+Azerbaijan,AZE,2018,72.864
+Bahamas,BHS,2018,73.752
+Bahrain,BHR,2018,77.163
+Bangladesh,BGD,2018,72.32
+Barbados,BRB,2018,79.081
+Belarus,BLR,2018,74.59
+Belgium,BEL,2018,81.468
+Belize,BLZ,2018,74.496
+Benin,BEN,2018,61.47
+Bermuda,BMU,2018,82.459
+Bhutan,BTN,2018,71.46
+Bolivia,BOL,2018,71.239
+Bonaire Sint Eustatius and Saba,BES,2018,77.608
+Bosnia and Herzegovina,BIH,2018,77.262
+Botswana,BWA,2018,69.275
+Brazil,BRA,2018,75.672
+British Virgin Islands,VGB,2018,78.907
+Brunei,BRN,2018,75.722
+Bulgaria,BGR,2018,74.928
+Burkina Faso,BFA,2018,61.174
+Burundi,BDI,2018,61.247
+Cambodia,KHM,2018,69.57
+Cameroon,CMR,2018,58.921
+Canada,CAN,2018,82.315
+Cape Verde,CPV,2018,72.782
+Cayman Islands,CYM,2018,83.781
+Central African Republic,CAF,2018,52.805
+Chad,TCD,2018,53.977
+Channel Islands,OWID_CIS,2018,82.928
+Chile,CHL,2018,80.042
+China,CHN,2018,76.704
+Colombia,COL,2018,77.109
+Comoros,COM,2018,64.118
+Congo,COG,2018,64.29
+Cook Islands,COK,2018,76.05
+Costa Rica,CRI,2018,80.095
+Cote d'Ivoire,CIV,2018,57.422
+Croatia,HRV,2018,78.342
+Cuba,CUB,2018,78.726
+Curacao,CUW,2018,78.733
+Cyprus,CYP,2018,80.828
+Czechia,CZE,2018,79.222
+Democratic Republic of Congo,COD,2018,60.368
+Denmark,DNK,2018,80.784
+Djibouti,DJI,2018,66.582
+Dominica,DMA,2018,74.806
+Dominican Republic,DOM,2018,73.892
+Ecuador,ECU,2018,76.8
+Egypt,EGY,2018,71.825
+El Salvador,SLV,2018,73.096
+Equatorial Guinea,GNQ,2018,58.402
+Eritrea,ERI,2018,65.941
+Estonia,EST,2018,78.567
+Eswatini,SWZ,2018,59.401
+Ethiopia,ETH,2018,66.24
+Europe,,2018,78.425
+Faeroe Islands,FRO,2018,80.52
+Falkland Islands,FLK,2018,81.304
+Fiji,FJI,2018,67.341
+Finland,FIN,2018,81.736
+France,FRA,2018,82.541
+French Guiana,GUF,2018,79.832
+French Polynesia,PYF,2018,77.462
+Gabon,GAB,2018,66.187
+Gambia,GMB,2018,61.735
+Georgia,GEO,2018,73.6
+Germany,DEU,2018,81.18
+Ghana,GHA,2018,63.78
+Gibraltar,GIB,2018,79.778
+Greece,GRC,2018,82.072
+Greenland,GRL,2018,71.632
+Grenada,GRD,2018,72.384
+Guadeloupe,GLP,2018,81.931
+Guam,GUM,2018,79.859
+Guatemala,GTM,2018,74.063
+Guinea,GIN,2018,61.185
+Guinea-Bissau,GNB,2018,58.003
+Guyana,GUY,2018,69.774
+Haiti,HTI,2018,63.66
+Honduras,HND,2018,75.088
+Hong Kong,HKG,2018,84.687
+Hungary,HUN,2018,76.701
+Iceland,ISL,2018,82.855
+India,IND,2018,69.416
+Indonesia,IDN,2018,71.509
+Iran,IRN,2018,76.479
+Iraq,IRQ,2018,70.454
+Ireland,IRL,2018,82.103
+Isle of Man,IMN,2018,81.255
+Israel,ISR,2018,82.819
+Italy,ITA,2018,83.352
+Jamaica,JAM,2018,74.368
+Japan,JPN,2018,84.47
+Jordan,JOR,2018,74.405
+Kazakhstan,KAZ,2018,73.236
+Kenya,KEN,2018,66.342
+Kiribati,KIR,2018,68.116
+Kuwait,KWT,2018,75.398
+Kyrgyzstan,KGZ,2018,71.321
+Laos,LAO,2018,67.61
+Latin America and the Caribbean,,2018,75.327
+Latvia,LVA,2018,75.172
+Lebanon,LBN,2018,78.875
+Lesotho,LSO,2018,53.705
+Liberia,LBR,2018,63.73
+Libya,LBY,2018,72.724
+Liechtenstein,LIE,2018,82.351
+Lithuania,LTU,2018,75.737
+Luxembourg,LUX,2018,82.102
+Macao,MAC,2018,84.118
+Madagascar,MDG,2018,66.681
+Malawi,MWI,2018,63.798
+Malaysia,MYS,2018,75.997
+Maldives,MDV,2018,78.627
+Mali,MLI,2018,58.893
+Malta,MLT,2018,82.376
+Marshall Islands,MHL,2018,73.496
+Martinique,MTQ,2018,82.359
+Mauritania,MRT,2018,64.704
+Mauritius,MUS,2018,74.863
+Mayotte,MYT,2018,79.417
+Mexico,MEX,2018,74.992
+Micronesia (country),FSM,2018,67.755
+Moldova,MDA,2018,71.808
+Monaco,MCO,2018,86.56
+Mongolia,MNG,2018,69.689
+Montenegro,MNE,2018,76.77
+Montserrat,MSR,2018,74.388
+Morocco,MAR,2018,76.453
+Mozambique,MOZ,2018,60.163
+Myanmar,MMR,2018,66.867
+Namibia,NAM,2018,63.373
+Nauru,NRU,2018,59.863
+Nepal,NPL,2018,70.478
+Netherlands,NLD,2018,82.143
+New Caledonia,NCL,2018,77.374
+New Zealand,NZL,2018,82.145
+Nicaragua,NIC,2018,74.275
+Niger,NER,2018,62.024
+Nigeria,NGA,2018,54.332
+Niue,NIU,2018,73.567
+North Korea,PRK,2018,72.095
+North Macedonia,MKD,2018,75.688
+Northern America,,2018,79.199
+Northern Mariana Islands,MNP,2018,76.44
+Norway,NOR,2018,82.271
+Oceania,,2018,78.529
+Oman,OMN,2018,77.633
+Pakistan,PAK,2018,67.114
+Palau,PLW,2018,73.524
+Palestine,PSE,2018,73.895
+Panama,PAN,2018,78.329
+Papua New Guinea,PNG,2018,64.263
+Paraguay,PRY,2018,74.131
+Peru,PER,2018,76.516
+Philippines,PHL,2018,71.095
+Poland,POL,2018,78.544
+Portugal,PRT,2018,81.857
+Puerto Rico,PRI,2018,79.952
+Qatar,QAT,2018,80.1
+Reunion,REU,2018,80.247
+Romania,ROU,2018,75.924
+Russia,RUS,2018,72.386
+Rwanda,RWA,2018,68.7
+Saint Barthlemy,,2018,81.82
+Saint Helena,SHN,2018,80.422
+Saint Kitts and Nevis,KNA,2018,76.075
+Saint Lucia,LCA,2018,76.057
+Saint Martin (French part),MAF,2018,81.86
+Saint Pierre and Miquelon,SPM,2018,80.921
+Saint Vincent and the Grenadines,VCT,2018,72.415
+Samoa,WSM,2018,73.187
+San Marino,SMR,2018,84.841
+Sao Tome and Principe,STP,2018,70.17
+Saudi Arabia,SAU,2018,74.998
+Senegal,SEN,2018,67.665
+Serbia,SRB,2018,75.849
+Seychelles,SYC,2018,73.333
+Sierra Leone,SLE,2018,54.309
+Singapore,SGP,2018,83.458
+Sint Maarten (Dutch part),SXM,2018,78.794
+Slovakia,SVK,2018,77.388
+Slovenia,SVN,2018,81.172
+Solomon Islands,SLB,2018,72.835
+Somalia,SOM,2018,57.068
+South Africa,ZAF,2018,63.857
+South Korea,KOR,2018,82.846
+South Sudan,SSD,2018,57.604
+Spain,ESP,2018,83.433
+Sri Lanka,LKA,2018,76.812
+Sudan,SDN,2018,65.095
+Suriname,SUR,2018,71.57
+Sweden,SWE,2018,82.654
+Switzerland,CHE,2018,83.63
+Syria,SYR,2018,71.779
+Taiwan,TWN,2018,80.283
+Tajikistan,TJK,2018,70.879
+Tanzania,TZA,2018,65.015
+Thailand,THA,2018,76.931
+Timor,TLS,2018,69.26
+Togo,TGO,2018,60.76
+Tokelau,TKL,2018,81.67
+Tonga,TON,2018,70.801
+Trinidad and Tobago,TTO,2018,73.38
+Tunisia,TUN,2018,76.505
+Turkey,TUR,2018,77.437
+Turkmenistan,TKM,2018,68.073
+Turks and Caicos Islands,TCA,2018,80.048
+Tuvalu,TUV,2018,67.348
+Uganda,UGA,2018,62.973
+Ukraine,UKR,2018,71.953
+United Arab Emirates,ARE,2018,77.814
+United Kingdom,GBR,2018,81.236
+United States,USA,2018,78.851
+United States Virgin Islands,VIR,2018,80.421
+Uruguay,URY,2018,77.77
+Uzbekistan,UZB,2018,71.573
+Vanuatu,VUT,2018,70.323
+Vatican,VAT,2018,74.94
+Venezuela,VEN,2018,72.128
+Vietnam,VNM,2018,75.317
+Wallis and Futuna,WLF,2018,79.767
+Western Sahara,ESH,2018,70.017
+World,OWID_WRL,2018,72.386
+Yemen,YEM,2018,66.096
+Zambia,ZMB,2018,63.51
+Zimbabwe,ZWE,2018,61.195
