@@ -1,6 +1,3 @@
-from itertools import count
-from math import nextafter
-from typing import final
 import matplotlib.pyplot as scatterPlot
 import csv
 import numpy as np
@@ -23,7 +20,7 @@ with open('life_expec.csv', 'r') as read_obj:
     for row in csv_reader: 
       countryLife.append(row[0])
 
-with open('gdp (1).csv', 'r') as read_obj:
+with open('gdp.csv', 'r') as read_obj:
     csv_reader = reader(read_obj)
     for row in csv_reader: 
         countryGdp.append(row[0])
@@ -42,7 +39,7 @@ while i<(len(finalCountry)-1):
             if row[0]==finalCountry[i]:
                 lifeExpectancy.append(row[3])
                 continue
-    with open('gdp (1).csv', 'r') as read_obj:
+    with open('gdp.csv', 'r') as read_obj:
         csv_reader = reader(read_obj)
         for row in csv_reader: 
             if row[0]==finalCountry[i]:
@@ -50,10 +47,8 @@ while i<(len(finalCountry)-1):
                 continue
     i=i+1
 
-print(finalCountry)
-print(lifeExpectancy)
-print(gdpCapita)
 
 
-#scatterPlot.scatter(gdp,lifeExpectancy) 
-#scatterPlot.show()
+
+scatterPlot.scatter(gdpCapita,lifeExpectancy) 
+scatterPlot.show()

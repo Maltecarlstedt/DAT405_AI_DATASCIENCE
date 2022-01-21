@@ -4,6 +4,7 @@ import matplotlib.pyplot as scatterPlot
 gdpCountries = pd.read_csv("gdp.csv", header = 0)
 lifeExpecCountries = pd.read_csv("life_expec.csv", header = 0)
 
+
 matchingCountries = []
 lifeExpec = []
 gdp = []
@@ -23,7 +24,12 @@ for index, gdpRows in gdpCountries.iterrows():
         lifeExpec.append(lifeRows[3])
         j = j + 1
 
+
 scatterPlot.scatter(gdp, lifeExpec)
+#for i in range(len(matchingCountries)-1):
+#  scatterPlot.annotate(matchingCountries[i], (gdp[i], lifeExpec[i])) #for us to see which point represents the country
+scatterPlot.ylabel("life-expectancy")
+scatterPlot.xlabel("gdp per capita")
 scatterPlot.show()
 
 
