@@ -1,3 +1,4 @@
+from numpy import average
 import pandas as pd 
 import matplotlib.pyplot as scatterPlot
 
@@ -24,13 +25,36 @@ for index, gdpRows in gdpCountries.iterrows():
         lifeExpec.append(lifeRows[3])
         j = j + 1
 
+def Average(list):
+  sum = 0
+  for i in range(len(list)-1):
+    sum=sum+list[i]
+  return sum/len(list)
 
-scatterPlot.scatter(gdp, lifeExpec)
+def Standard_dev(list):
+  average = Average(list)
+  deviations = []
+  for i in range(len(list)-1):
+    deviations.append((list[i]-average)**2)
+  almostdone = Average(deviations)
+  return almostdone**0.5
+
+
+print(Average(lifeExpec))
+print(Standard_dev(lifeExpec))
+
+def Countries_above_standard(list):
+  standard_dev = Standard_dev(list)
+  average = Average(list)
+  
+
+
+#scatterPlot.scatter(gdp, lifeExpec)
 #for i in range(len(matchingCountries)-1):
 #  scatterPlot.annotate(matchingCountries[i], (gdp[i], lifeExpec[i])) #for us to see which point represents the country
 scatterPlot.ylabel("life-expectancy")
 scatterPlot.xlabel("gdp per capita")
-scatterPlot.show()
+#scatterPlot.show()
 
 
 """"
