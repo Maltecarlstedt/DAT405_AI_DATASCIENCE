@@ -40,21 +40,30 @@ def Standard_dev(list):
   return almostdone**0.5
 
 
-print(Average(lifeExpec))
-print(Standard_dev(lifeExpec))
+# print(Average(lifeExpec))
+# print(Standard_dev(lifeExpec))
+print(Average(gdp))
+print(Standard_dev(gdp))
 
 def Countries_above_standard(list):
-  standard_dev = Standard_dev(list)
-  average = Average(list)
+  oneAboveStandardDev = Standard_dev(list) + Average(list)
+  listOfCountriesAbove = []
+  for index, lifeRows in lifeExpecCountries.iterrows():
+    if(lifeRows[3] >= oneAboveStandardDev and lifeRows[0] in matchingCountries):
+      listOfCountriesAbove.append(lifeRows[0])
+  return listOfCountriesAbove
   
 
+# print(Countries_above_standard(lifeExpec))
+# print(len(Countries_above_standard(lifeExpec)))
+# print(len(lifeExpec))
 
-#scatterPlot.scatter(gdp, lifeExpec)
-#for i in range(len(matchingCountries)-1):
-#  scatterPlot.annotate(matchingCountries[i], (gdp[i], lifeExpec[i])) #for us to see which point represents the country
+scatterPlot.scatter(gdp, lifeExpec)
+for i in range(len(matchingCountries)-1):
+  scatterPlot.annotate(matchingCountries[i], (gdp[i], lifeExpec[i])) #for us to see which point represents the country
 scatterPlot.ylabel("life-expectancy")
 scatterPlot.xlabel("gdp per capita")
-#scatterPlot.show()
+scatterPlot.show()
 
 
 """"
