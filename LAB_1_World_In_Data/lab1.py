@@ -1,8 +1,8 @@
 import pandas as pd 
 import matplotlib.pyplot as scatterPlot
 
-gdpCountries = pd.read_csv("LAB_1_World_In_Data\gdp.csv", header = 0)
-lifeExpecCountries = pd.read_csv("LAB_1_World_In_Data\life_expec.csv", header = 0)
+gdpCountries = pd.read_csv("gdp.csv", header = 0)
+lifeExpecCountries = pd.read_csv("life_expec.csv", header = 0)
 
 matchingCountries = []
 lifeExpec = []
