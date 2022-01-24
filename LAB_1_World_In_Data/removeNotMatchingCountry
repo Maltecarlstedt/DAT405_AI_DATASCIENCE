@@ -1,0 +1,15 @@
+# Inspiration from https://stackoverflow.com/questions/29639128/remove-specific-rows-from-csv-file-if-matching-the-elements-of-a-list-python
+
+# Maybe delete 
+import csv
+from xml.dom.minidom import Entity
+from lab1_2 import matchingCountries
+
+i = 0
+with open('savingsMod.csv', 'w+') as output_file:
+    with open('savings.csv') as input_file: 
+      writer = csv.writer(output_file)
+      for row in csv.reader(input_file):
+        if row[0] not in matchingCountries:
+          writer.writerow(row)
+          i = i+1

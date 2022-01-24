@@ -1,5 +1,6 @@
 import pandas as pd 
 import matplotlib.pyplot as scatterPlot
+import csv
 
 
 hapiness = pd.read_csv("hapiness.csv", header = 0)
@@ -24,17 +25,27 @@ savingsCountries = []
 higherEducationCountries = higherEducation['Entity'].tolist()
 hapinessCountries = hapiness['Entity'].tolist()
 savingsCountries = savings['Entity'].tolist()
-higherEducationData = higherEducation['higherED'].tolist()
-hapinessData = hapiness['hapiness'].tolist()
-savingsData = savings['savings'].tolist()
 
-
+#higherEducationData = higherEducation['higherED'].tolist()
+#hapinessData = hapiness['hapiness'].tolist()
+#savingsData = savings['savings'].tolist()
 
 
 # To get the countries that exists in 2 lists.
-def getMatchingCountries(listA, listB):
- matchingCountries = list(set(listA) & set(listB))
+def getMatchingCountries(listA, listB, listC):
+ matchingCountries = list(set(listA) & set(listB) & set(listC))
  return matchingCountries
 
-scatterPlot.scatter(hapinessData, higherEducationData)
-scatterPlot.show()
+matchingCountries = getMatchingCountries(higherEducationCountries, hapinessCountries, savingsCountries)
+
+
+
+"""""
+def get_Correlated_data(listA, listB):
+  matchingCountries = getMatchingCountries(listA,listB)
+  for i in range(len(listA)):
+    for j in range(len(listB)):
+      if
+"""
+#scatterPlot.scatter(hapinessData, higherEducationData)
+#scatterPlot.show()
