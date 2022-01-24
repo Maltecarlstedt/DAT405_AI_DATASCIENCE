@@ -1,4 +1,4 @@
-Entity,Code,Year,GDPperCapita,145446-annotations
+Entity,Code,Year,GDPperCapita,
 Afghanistan,AFG,2018,1934.56,
 Albania,ALB,2018,11104.17,
 Algeria,DZA,2018,14228.03,
@@ -172,7 +172,7 @@ Uzbekistan,UZB,2018,11220.37,
 Venezuela,VEN,2018,10709.95,
 Vietnam,VNM,2018,6814.14,
 Western Europe,,2018,39789.9,
-Western Offshoots,,2018,53756.5,"United States, Canada, Australia and New Zealand"
+Western Offshoots,,2018,53756.5,
 World,OWID_WRL,2018,15212.42,
 Yemen,YEM,2018,2284.89,
 Zambia,ZMB,2018,3534.03,
