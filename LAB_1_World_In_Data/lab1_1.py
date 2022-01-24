@@ -13,7 +13,6 @@ del lifeExpecCountries["Code"]
 
 # print(gdpCountries.to_string)
 # print(lifeExpecCountries.to_string)
-
 # Initiating list that are going to be used
 matchingCountries = []
 lifeExpec = []
