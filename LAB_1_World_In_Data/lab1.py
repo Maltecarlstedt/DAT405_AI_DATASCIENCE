@@ -3,8 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as scatterPlot
 import math
 
-# importing from CSV files. Note the files has already been data cleaned and only has data from 2018.
-# 
+# importing from CSV files. Note the files has already been data cleaned and only has data from 2018. 
 gdpCountries = pd.read_csv("gdp.csv", header = 0)
 lifeExpecCountries = pd.read_csv("life_expec.csv", header = 0)
 
@@ -12,13 +11,15 @@ lifeExpecCountries = pd.read_csv("life_expec.csv", header = 0)
 del gdpCountries["Code"]
 del lifeExpecCountries["Code"]
 
-print(gdpCountries.to_string)
-print(lifeExpecCountries.to_string)
+# print(gdpCountries.to_string)
+# print(lifeExpecCountries.to_string)
 
+# Initiating list that are going to be used
 matchingCountries = []
 lifeExpec = []
 gdp = []
 
+# Used for index
 i = 0
 j = 0
 
@@ -36,7 +37,6 @@ for index, gdpRows in gdpCountries.iterrows():
         j = j + 1
 
 # To calculate the average for a list.
-
 def Average(list):
   sum = 0
   for i in range(len(list)-1):
@@ -52,11 +52,13 @@ def Standard_dev(list):
   almostdone = Average(deviations)
   return math.sqrt(almostdone)
 
+# Debugging
 # print(Average(lifeExpec))
 # print(Standard_dev(lifeExpec))
 # print(Average(gdp))
 # print(Standard_dev(gdp))
 
+# Returns a list of all countries that has a lower gdp than average.
 def Countries_below_mean(list):
   average = Average(list)
   below_mean = []
@@ -65,6 +67,7 @@ def Countries_below_mean(list):
       below_mean.append(gdpRows[0])
   return below_mean
 
+# Returns a list of all countries that has a higher gdp than average
 def Countries_above_mean(list):
   average = Average(list)
   below_mean = []
@@ -72,8 +75,7 @@ def Countries_above_mean(list):
     if(gdpRows[3] > average and gdpRows[0] in matchingCountries):
       below_mean.append(gdpRows[0])
   return below_mean
-
-
+  
 # Returns a list of all countries with one standard deviation above the average.
 def Countries_above_standard(list):
   oneAboveStandardDev = Standard_dev(list) + Average(list)
@@ -82,7 +84,8 @@ def Countries_above_standard(list):
     if(lifeRows[2] >= oneAboveStandardDev and lifeRows[0] in matchingCountries):
       listOfCountriesAbove.append(lifeRows[0])
   return listOfCountriesAbove
-  
+
+# Returns a list of all countries with one standard deviation below the average
 def Countries_below_standard(list):
   oneAboveStandardDev = -Standard_dev(list) + Average(list)
   listOfCountriesAbove = []
@@ -91,9 +94,10 @@ def Countries_below_standard(list):
       listOfCountriesAbove.append(lifeRows[0])
   return listOfCountriesAbove
 
-print(list(set(Countries_below_standard(lifeExpec)) & set(Countries_above_mean(gdp))))
 
-#print(list(set(Countries_above_standard(lifeExpec)) & set(Countries_below_mean(gdp))))
+# To get the matching countries in every list. 
+# print(list(set(Countries_below_standard(lifeExpec)) & set(Countries_above_mean(gdp))))
+# print(list(set(Countries_above_standard(lifeExpec)) & set(Countries_below_mean(gdp))))
 
 
 # Scatter our plot. The for loop is optional and is used to put labels on each data point.
@@ -102,7 +106,7 @@ for i in range(len(matchingCountries)-1):
   scatterPlot.annotate(matchingCountries[i], (gdp[i], lifeExpec[i])) #for us to see which point represents the country
 scatterPlot.ylabel("life-expectancy")
 scatterPlot.xlabel("gdp per capita")
-#scatterPlot.show()
+scatterPlot.show()
 
 # Debugging
 """"
