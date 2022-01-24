@@ -7,7 +7,7 @@ hapiness = pd.read_csv("hapiness.csv", header = 0)
 higherEducation = pd.read_csv("higherEducation.csv", header = 0)
 trust = pd.read_csv("trust.csv", header = 0)
 
-# Data cleaning, only using data from the year 2019
+# Data cleaning, only using data from a specific year
 hapiness = hapiness[hapiness['Year']==2010]
 higherEducation = higherEducation[higherEducation['Year']==2010]
 # Using 2009 here since no other year was good four us.
