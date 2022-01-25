@@ -4,24 +4,24 @@ import csv
 
 # Reading from CSV-files
 hapiness = pd.read_csv("hapiness.csv", header = 0)
-higherEducation = pd.read_csv("higherEducation.csv", header = 0)
 trust = pd.read_csv("trust.csv", header = 0)
+corruption = pd.read_csv("corruption.csv", header = 0)
 
 # Data cleaning, only using data from a specific year
-hapiness = hapiness[hapiness['Year']==2010]
-higherEducation = higherEducation[higherEducation['Year']==2010]
-# Using 2009 here since no other year was good four us.
-trust = trust[trust['Year']==2009]
+# Using 2014 here since this the most recent year the data has in common
+hapiness = hapiness[hapiness['Year']==2014]
+trust = trust[trust['Year']==2014]
+corruption = corruption[corruption['Year']==2014]
 
 # Data cleaning the column "code" sine it has no use to us.
 del hapiness["Code"]
-del higherEducation["Code"]
 del trust["Code"]
+del corruption["Code"]
 
 # To get lists from CSV-files
-higherEducationCountries = higherEducation['Entity'].tolist()
 hapinessCountries = hapiness['Entity'].tolist()
 trustCountries = trust['Entity'].tolist()
+corruptionCountries = corruption['Entity'].tolist()
 
 # To get the countries that exists in all 3 lists.
 def getMatchingCountries(listA, listB, listC):
@@ -29,23 +29,35 @@ def getMatchingCountries(listA, listB, listC):
  return matchingCountries
 
 # Creating a list of all countries that exists in all files
-matchingCountries = getMatchingCountries(higherEducationCountries, hapinessCountries, trustCountries)
+matchingCountries = getMatchingCountries(corruptionCountries, hapinessCountries, trustCountries)
+
+# Sorting it so it's in the same order as in the csv-files which are in alphabeticalorder
+matchingCountries.sort()
 
 # Removing rows that are not in matchingCountries
 hapiness = hapiness.loc[hapiness['Entity'].isin(matchingCountries)]
 trust = trust.loc[trust['Entity'].isin(matchingCountries)]
-higherEducation = higherEducation.loc[higherEducation['Entity'].isin(matchingCountries)]
+corruption = corruption.loc[corruption['Entity'].isin(matchingCountries)]
 
 # Debugging
-#higherEducationCountries = higherEducation['Entity'].tolist()
 #hapinessCountries = hapiness['Entity'].tolist()
 #trustCountries = trust['Entity'].tolist()
 
 # Creating list of our data columns
-higherEducationData = higherEducation['data'].tolist()
 hapinessData = hapiness['data'].tolist()
 trustData = trust['data'].tolist()
+corruptionData = corruption['data'].tolist()
 
 # Plotting
-scatterPlot.scatter(trustData, hapinessData)
+scatterPlot.scatter(trustData , hapinessData)
+# For labeling the data
+#for i in range(len(matchingCountries)-1):
+#  scatterPlot.annotate(matchingCountries[i], (corruptionData[i], hapinessData[i])) #for us to see which point represents the country
+scatterPlot.ylabel("Life satisfaction in Cantril Ladder - higher is happier")
+scatterPlot.xlabel("Percentages of people agreeing with: I can trust others")
 scatterPlot.show()
+
+# Labels
+# Corruption Perception Index - Transparency International (2018)
+# Life satisfaction in Cantril Ladder (World Happiness Report 2021)
+# Trust in others - percentages of people agreeing with the statement "I can trust others"
