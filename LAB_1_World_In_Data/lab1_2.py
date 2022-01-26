@@ -31,7 +31,7 @@ def getMatchingCountries(listA, listB, listC):
 # Creating a list of all countries that exists in all files
 matchingCountries = getMatchingCountries(corruptionCountries, hapinessCountries, trustCountries)
 
-# Sorting it so it's in the same order as in the csv-files which are in alphabeticalorder
+# Sorting it so it's in the same order as the rows in the csv-files.
 matchingCountries.sort()
 
 # Removing rows that are not in matchingCountries
@@ -45,16 +45,16 @@ corruption = corruption.loc[corruption['Entity'].isin(matchingCountries)]
 
 # Creating list of our data columns
 hapinessData = hapiness['data'].tolist()
-trustData = trust['data'].tolist()
 corruptionData = corruption['data'].tolist()
+trustData = trust['data'].tolist()
 
 # Plotting
-scatterPlot.scatter(trustData , hapinessData)
-# For labeling the data
-#for i in range(len(matchingCountries)-1):
-#  scatterPlot.annotate(matchingCountries[i], (corruptionData[i], hapinessData[i])) #for us to see which point represents the country
-scatterPlot.ylabel("Life satisfaction in Cantril Ladder - higher is happier")
-scatterPlot.xlabel("Percentages of people agreeing with: I can trust others")
+scatterPlot.scatter(corruptionData , hapinessData)
+#For labeling the data
+for i in range(len(matchingCountries)-1):
+  scatterPlot.annotate(matchingCountries[i], (corruptionData[i], hapinessData[i])) #for us to see which point represents the country
+scatterPlot.ylabel("Happiness - higher is more happy")
+scatterPlot.xlabel("Corruption - lower is more corrupt")
 scatterPlot.show()
 
 # Labels
