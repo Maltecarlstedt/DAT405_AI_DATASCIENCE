@@ -20,13 +20,13 @@ y = houses.iloc[:, 1].values.reshape(-1, 1)
 model = LinearRegression().fit(x, y)
 
 # Plots our x and y values. That is our area and price values.
-plt.scatter(x, y)
+#plt.scatter(x, y)
 # Prints the K-value (slope)
 #print(model.coef_)
 # Prints the m-value (intercept value)
 #print(model.intercept_)
-plt.ylabel("Price")
-plt.xlabel("Area")
+#plt.ylabel("Price")
+#plt.xlabel("Area")
 #plt.show();
 
 # Choosing to plot for x values between 0 to 300. With 1000 evenly spaced values.
@@ -38,12 +38,13 @@ yfit = model.predict(xfit[:, np.newaxis])
 #print(model.predict([[150]]))
 #print(model.predict([[200]]))
 
-def getResiduals(listA, listB):
-  residuals = [] 
-  for i in range(len(listA)):
-    residuals.append((listA[i]) - (listB[i]))
-    return residuals
+print(model.predict(x))
 
+plt.ylabel('Residuals')
+plt.xlabel('area [m^2]')
+plt.scatter(x,y-model.predict(x))
+plt.axhline(y=0)
+plt.show()
 
 #print(yfit.tolist())
 #residuals = getResiduals(y.tolist() , yfit.tolist())
