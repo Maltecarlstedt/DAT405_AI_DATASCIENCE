@@ -38,13 +38,13 @@ yfit = model.predict(xfit[:, np.newaxis])
 #print(model.predict([[150]]))
 #print(model.predict([[200]]))
 
-print(model.predict(x))
 
+#following code gives a residual plot
 plt.ylabel('Residuals')
 plt.xlabel('area [m^2]')
-plt.scatter(x,y-model.predict(x))
-plt.axhline(y=0)
-plt.show()
+plt.scatter(x,y-model.predict(x)) #residual is defined as predicted y - f(real x)
+plt.axhline(y=0) #in order to make the plot easier to read
+#plt.show()
 
 #print(yfit.tolist())
 #residuals = getResiduals(y.tolist() , yfit.tolist())
