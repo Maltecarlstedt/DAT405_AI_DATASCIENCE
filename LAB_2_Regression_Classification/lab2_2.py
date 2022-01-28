@@ -13,7 +13,6 @@ from sklearn import metrics
 # Dataset from sklearn
 iris = datasets.load_iris()
 class_names = iris.target_names
-print(class_names)
 
 #split the data to 25% test set and 75% training set
 x_train, x_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.25, random_state=0)
