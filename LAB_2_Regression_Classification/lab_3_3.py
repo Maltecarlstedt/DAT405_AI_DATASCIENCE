@@ -16,7 +16,8 @@ class_names = iris.target_names
 
 x_train, x_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.25, random_state=0)
 
-knn = KNeighborsClassifier(n_neighbors=1)
+k= 112
+knn = KNeighborsClassifier(n_neighbors=k)
 
 knn.fit(x_train, y_train)
 
@@ -47,6 +48,7 @@ plt.xlabel('Predicted label')
 
 # Setting the title of the plot
 title = 'Accuracy Score: {0}'.format(score)
+title = title + ' , for k = '+str(k)
 plt.title(title)
 
 # Show the plot on the screen
