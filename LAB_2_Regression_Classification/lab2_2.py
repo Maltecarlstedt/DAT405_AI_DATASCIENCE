@@ -40,7 +40,7 @@ cm = metrics.confusion_matrix(y_test, predictions)
 
 #plotting the confusion matrix
 sns.heatmap(cm, annot=True, fmt=".3f", linewidths=.5, square = True, cmap = 'Blues_r')
-tick_marks = np.arange(0,len(class_names))
+tick_marks = np.arange(0.5,len(class_names)+0.5)
 plt.xticks(tick_marks, class_names)
 plt.yticks(tick_marks, class_names)
 plt.ylabel('True label')
