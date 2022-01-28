@@ -13,6 +13,7 @@ from sklearn import metrics
 # Dataset from sklearn
 iris = datasets.load_iris()
 class_names = iris.target_names
+print(class_names)
 
 #split the data to 25% test set and 75% training set
 x_train, x_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.25, random_state=0)
@@ -39,6 +40,9 @@ cm = metrics.confusion_matrix(y_test, predictions)
 
 #plotting the confusion matrix
 sns.heatmap(cm, annot=True, fmt=".3f", linewidths=.5, square = True, cmap = 'Blues_r')
+tick_marks = np.arange(0,len(class_names))
+plt.xticks(tick_marks, class_names)
+plt.yticks(tick_marks, class_names)
 plt.ylabel('True label')
 plt.xlabel('Predicted label')
 all_sample_title = 'Accuracy Score: {0}'.format(score)
