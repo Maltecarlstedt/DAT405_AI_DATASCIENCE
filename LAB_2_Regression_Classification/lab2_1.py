@@ -6,6 +6,9 @@ from sklearn.linear_model import Ridge
 import matplotlib.pyplot as plt
 import numpy as np
 
+__author__ = "Malte Carlstedt, Johan Östling"
+# Both Malte and Johan spent about 1h on this part of the lab
+
 houses = pd.read_csv("houses.csv", header = 0)
 
 #area = houses['area'].tolist()

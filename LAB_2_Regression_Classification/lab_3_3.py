@@ -8,21 +8,27 @@ import numpy as np
 
 
 __author__ = "Malte Carlstedt, Johan Östling"
+# Both Malte and Johan spent about 2h on this part of the lab
 
-
+# Loads the dataset from sklearn
 iris = datasets.load_iris()
 
+# Adding the names for the different flowers. Just later for labels.
 class_names = iris.target_names
 
 x_train, x_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.25, random_state=0)
 
+# Creates the model. Where k = number of neighbours.
 k= 112
 knn = KNeighborsClassifier(n_neighbors=k)
 
+# Fit the model with our training set.
 knn.fit(x_train, y_train)
 
+# Predicts the y value using the x_test value. 
 y_pred = knn.predict(x_test)
 
+# Gives a percentage of how many prediction was correct
 score = metrics.accuracy_score(y_test, y_pred)
 
 # Computing our confusion matrix to evaluate the accuracy of our predections contra the actual values.
