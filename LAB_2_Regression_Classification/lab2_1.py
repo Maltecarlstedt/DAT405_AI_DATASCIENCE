@@ -14,9 +14,9 @@ houses = pd.read_csv("houses.csv", header = 0)
 #area = houses['area'].tolist()
 #price = houses['price'].tolist()
 
-# Chooses Column 0 and reshape it to fit into an numpy array
+# Chooses Column 0, which is the area and reshape it to fit into an numpy array
 x = houses.iloc[:, 0].values.reshape(-1, 1) 
-# Chooses column 1 and reshapre it to fit into an numpy array
+# Chooses column 1, which is the price and reshapre it to fit into an numpy array
 y = houses.iloc[:, 1].values.reshape(-1, 1) 
 
 # Calculate linear regression, which is trying to fit a straight line in our dataset. Adjusting to our data.
@@ -25,9 +25,9 @@ model = LinearRegression().fit(x, y)
 # Plots our x and y values. That is our area and price values.
 #plt.scatter(x, y)
 # Prints the K-value (slope)
-#print(model.coef_)
+# print(model.coef_)
 # Prints the m-value (intercept value)
-#print(model.intercept_)
+# print(model.intercept_)
 #plt.ylabel("Price")
 #plt.xlabel("Area")
 #plt.show();
@@ -43,16 +43,19 @@ yfit = model.predict(xfit[:, np.newaxis])
 
 
 #following code gives a residual plot
-plt.ylabel('Residuals')
-plt.xlabel('area [m^2]')
-plt.scatter(x,y-model.predict(x)) #residual is defined as predicted y - f(real x)
-plt.axhline(y=0) #in order to make the plot easier to read
+#plt.ylabel('Residuals')
+#plt.xlabel('area [m^2]')
+#plt.scatter(x,y-model.predict(x)) #residual is defined as predicted y - f(real x)
+#plt.axhline(y=0) #in order to make the plot easier to read
 #plt.show()
 
+# Debugging
 #print(yfit.tolist())
-#residuals = getResiduals(y.tolist() , yfit.tolist())
 #print(residuals)
+
+# Scattering for x = area, y = price and xfit, yfit gives the regression line plot
 plt.scatter(x, y)
 plt.plot(xfit, yfit)
 
-#plt.show()
+# Shows the plot
+plt.show()
