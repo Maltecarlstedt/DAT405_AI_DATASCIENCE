@@ -17,11 +17,9 @@ arr_2d = data200.to_numpy()
 
 
 #from the scatter plot we see that the points form 4 clusters
-<<<<<<< HEAD
 kmeans = KMeans(n_clusters=5, random_state=0)
-=======
-kmeans = KMeans(n_clusters=2, random_state=0)
->>>>>>> e6762d75381afff5392377b8583a81c0d9b9ab59
+
+
 
 #fits the centers to 4 clusters in our data set
 kmeans.fit(arr_2d)
