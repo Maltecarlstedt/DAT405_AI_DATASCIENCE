@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-
 __author__ = "Malte Carlstedt, Johan Östling"
 # Both Malte and Johan spent about 2h on this part of the lab
 
