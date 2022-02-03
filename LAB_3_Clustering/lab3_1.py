@@ -15,24 +15,28 @@ del data200['chain']
 #turn data200 into a 2d numpy array
 arr_2d = data200.to_numpy()
 
-#x = phi, y = psi
-plt.scatter(arr_2d[:,0],arr_2d[:,1])
 
 #from the scatter plot we see that the points form 4 clusters
-kmeans = KMeans(n_clusters=4, random_state=0)
+kmeans = KMeans(n_clusters=5, random_state=0)
 
 #fits the centers to 4 clusters in our data set
 kmeans.fit(arr_2d)
+
+# Adding labels and titles
+plt.title("Phi and psi combinations")
+plt.ylabel("psi")
+plt.xlabel("phi")
+
+#x = phi, y = psi, Using c=kmeans.labels to colour them.
+plt.scatter(arr_2d[:,0],arr_2d[:,1], c=kmeans.labels_.astype(float))
 
 #plots the centers
 plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], c='red', marker='x')
 plt.show()
 
 """
-#plotting and adding titles
-plt.title("Phi and psi combinations")
-plt.ylabel("psi")
-plt.xlabel("phi")
+#plotting
 plt.scatter(phi,psi)
 plt.show()
 """
+
