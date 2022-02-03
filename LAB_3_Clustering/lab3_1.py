@@ -19,7 +19,7 @@ psi = data200['psi'].tolist()
 arr_2d = data200.to_numpy()
 
 #from the scatter plot we see that the points form 4 clusters
-kmeans = KMeans(n_clusters=5, random_state=0)
+kmeans = KMeans(n_clusters=6, random_state=0)
 
 #fits the centers to 4 clusters in our data set
 kmeans.fit(arr_2d)

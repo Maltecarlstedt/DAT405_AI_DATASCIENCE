@@ -1,3 +1,5 @@
+# Elbow algorithm collected from https://www.geeksforgeeks.org/elbow-method-for-optimal-value-of-k-in-kmeans/
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
@@ -35,9 +37,17 @@ for k in K:
                                    'euclidean'), axis=1)) / arr_2d.shape[0]
     mapping2[k] = kmeanModel.inertia_
 
-
-plt.plot(K, inertias, 'bx-')
+# Printing for elbow method using distorions
+plt.plot(K, distortions, 'bx-')
 plt.xlabel('Values of K')
-plt.ylabel('Inertias')
-plt.title('The Elbow Method using Inertias')
+plt.ylabel('distorions')
+plt.title('The Elbow Method using Distortions')
 plt.show()
+
+# Printing for elbow method using distorions
+#plt.plot(K, inertia, 'bx-')
+#plt.xlabel('Values of K')
+#plt.ylabel('inertias')
+#plt.title('The Elbow Method using inertias')
+#plt.show()
+
