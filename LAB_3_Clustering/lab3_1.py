@@ -18,7 +18,7 @@ del data200['chain']
 #turn data200 into a 2d numpy array
 arr_2d = data200.to_numpy()
 
-K = range(1, 10)
+K = range(2, 10)
  
 for k in K:
   clusterer = KMeans(n_clusters=k, random_state=0)
