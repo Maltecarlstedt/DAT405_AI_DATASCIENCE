@@ -1,3 +1,4 @@
+import math
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
@@ -18,16 +19,23 @@ psi = allData['psi'].tolist()
 #turn data200 into a 2d numpy array
 arr_2d = allData.to_numpy()
 
+
+#taking the cosine function of every data point
+#for i in range(len(arr_2d[:,0]-1)):
+#    arr_2d[i,0]=math.cos(math.radians(arr_2d[i,0]))
+#    arr_2d[i,1]=math.cos(math.radians(arr_2d[i,1]))
+
+
 #from the scatter plot we see that the points form 4 clusters
-kmeans = KMeans(n_clusters=4, random_state=0)
+kmeans = KMeans(n_clusters=2, random_state=0)
 
 #fits the centers to 4 clusters in our data set
 kmeans.fit(arr_2d)
 
 # Adding labels and titles
 plt.title("Phi and psi combinations")
-plt.ylabel("psi")
-plt.xlabel("phi")
+plt.ylabel("cos(psi)")
+plt.xlabel("cos(phi)")
 
 #x = phi, y = psi, Using c=kmeans.labels to colour them.
 plt.scatter(arr_2d[:,0],arr_2d[:,1], c=kmeans.labels_.astype(float))
@@ -39,4 +47,3 @@ plt.show()
 #plotting
 #plt.scatter(phi,psi)
 #plt.show()
-
