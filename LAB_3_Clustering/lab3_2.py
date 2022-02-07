@@ -1,5 +1,6 @@
 from collections import Counter
 from itertools import count
+from matplotlib.colors import Colormap
 import numpy as np
 from sklearn import cluster
 from sklearn.cluster import DBSCAN
@@ -12,7 +13,7 @@ import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 
 #save all data in file data_200.csv except the first row
-data200 = pd.read_csv("data_200.csv", header = 0)
+data200 = pd.read_csv("data_all.csv", header = 0)
 
 #delete columns we dont want so we can create 2d array later
 del data200['residue name']
@@ -24,11 +25,12 @@ X = data200.to_numpy()
 
 """
 #Finding optimal value for epsilon
-nearest_neighbors = NearestNeighbors(n_neighbors=11)
-neighbors = nearest_neighbors.fit(arr_2d)
+nearest_neighbors = NearestNeighbors(n_neighbors=4)
+neighbors = nearest_neighbors.fit(X)
 
-distances, indices = neighbors.kneighbors(arr_2d)
-distances = np.sort(distances[:,10], axis=0)
+distances, indices = neighbors.kneighbors(X)
+distances = np.sort(distances, axis=0)
+distances = distances[:,1]
 
 fig = plt.figure(figsize=(5, 5))
 plt.plot(distances)
@@ -39,7 +41,7 @@ plt.show()
 """
 #Compute DBSCAN
 X = StandardScaler().fit_transform(X)
-db = DBSCAN(eps=0.4,min_samples=4).fit(X)
+db = DBSCAN(eps=3,min_samples=4).fit(X)
 labels = db.labels_
 
 print(labels)
@@ -52,16 +54,15 @@ n_noise = list(db.labels_).count(-1)
 print('Estimated no. of noise points: %d' % n_noise)
 
 
+plt.scatter(X[:, 0], 
+            X[:, 1], 
+            c=labels)
+
 
 for i in range(len(labels)-1):
     if labels[i]==-1:
         plt.scatter(X[i, 0], 
                     X[i, 1], 
                     c='black')
-    else:
-        plt.scatter(X[i, 0], 
-                    X[i, 1], 
-                    c=labels[i])
 
 plt.show()
-
