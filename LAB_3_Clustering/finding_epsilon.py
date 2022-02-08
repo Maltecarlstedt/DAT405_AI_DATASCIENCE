@@ -24,9 +24,8 @@ del data200['chain']
 X = data200.to_numpy()
 #X = StandardScaler().fit_transform(X)
 
-"""
 #Finding optimal value for epsilon
-nearest_neighbors = NearestNeighbors(n_neighbors=40)
+nearest_neighbors = NearestNeighbors(n_neighbors=4)
 neighbors = nearest_neighbors.fit(X)
 
 distances, indices = neighbors.kneighbors(X)
@@ -36,42 +35,7 @@ distances = distances[:,1]
 #fig = plt.figure(figsize=(5, 5))
 plt.plot(distances)
 plt.xlabel("Points")
-plt.ylabel("Distance to neighbours")
-plt.title("Finding epsilon elbow equation. Where n neighbours = 40")
+plt.ylabel("Distance")
+plt.title("Finding optimal Epsilon")
 
 plt.show()
-
-#Compute DBSCAN
-"""
-
-db = DBSCAN(eps=12, metric="euclidean", min_samples=70).fit(X)
-labels = db.labels_
-#Number of clusters
-print("______________________________________________")
-
-n_clus=len(set(labels))-(1 if -1 in labels else 0)
-print('Estimated no. of clusters: %d' % n_clus)
-#Identify outliers
-n_noise = list(db.labels_).count(-1)
-print('Estimated no. of noise points: %d' % n_noise)
-
-print("_______________________________________________")
-
-"""
-plt.scatter(X[:, 0], 
-            X[:, 1], 
-            c=labels)
-
-
-
-# Recolor noise
-for i in range(len(labels)-1):
-    if labels[i]==-1:
-        plt.scatter(X[i, 0], 
-                    X[i, 1], 
-                    c='black')
-"""
-
-
-#plt.title("Min_samples = 70 and Epsilon = 12")
-#plt.show()
