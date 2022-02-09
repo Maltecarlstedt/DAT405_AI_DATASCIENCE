@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
+import numpy as np
 
 # Read data from csv file
 data = pd.read_csv("data_all.csv", header = 0)
