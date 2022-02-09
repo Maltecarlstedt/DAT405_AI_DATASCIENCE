@@ -1,28 +1,18 @@
-from collections import Counter
-from itertools import count
-from matplotlib.colors import Colormap
-import numpy as np
-from sklearn import cluster
-from sklearn.cluster import DBSCAN
-from sklearn import metrics
-from sklearn import datasets
-from sklearn.datasets import make_blobs
-from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 
-#save all data in file data_200.csv except the first row
-data200 = pd.read_csv("data_all.csv", header = 0)
+# Read data from csv file
+data = pd.read_csv("data_all.csv", header = 0)
 
 #delete columns we dont want so we can create 2d array later
-del data200['residue name']
-del data200['position']
-del data200['chain']
+del data['residueName']
+del data['position']
+del data['chain']
 
-#turn data200 into a 2d numpy array
-X = data200.to_numpy()
-#X = StandardScaler().fit_transform(X)
+#turn data into a 2d numpy array
+X = data.to_numpy()
+
 
 #Finding optimal value for epsilon
 nearest_neighbors = NearestNeighbors(n_neighbors=4)

@@ -7,7 +7,7 @@ import numpy as np
 from scipy.spatial.distance import cdist
 
 
-#save all data in file data_200.csv except the first row
+# Read data from csv file
 allData = pd.read_csv("data_all.csv", header = 0)
 
 #delete columns we dont want so we can create 2d array later
@@ -15,11 +15,7 @@ del allData['residueName']
 del allData['position']
 del allData['chain']
 
-# Convert to simple lists that is used to plot the clusters in the first assignment.
-phi = allData['phi'].tolist()
-psi = allData['psi'].tolist()
-
-#turn data200 into a 2d numpy array
+#turn allData into a 2d numpy array
 arr_2d = allData.to_numpy()
 
 # Defineing lists to store our inertias and distorions.
