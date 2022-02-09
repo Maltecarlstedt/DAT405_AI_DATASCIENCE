@@ -36,8 +36,8 @@ kmeans.fit(arr_2d)
 
 # Adding labels and titles
 plt.title("Phi and psi combinations")
-plt.ylabel("cos(psi)")
-plt.xlabel("cos(phi)")
+plt.ylabel("psi")
+plt.xlabel("phi")
 
 #x = phi, y = psi, Using c=kmeans.labels to colour them.
 plt.scatter(arr_2d[:,0],arr_2d[:,1], c=kmeans.labels_.astype(float))

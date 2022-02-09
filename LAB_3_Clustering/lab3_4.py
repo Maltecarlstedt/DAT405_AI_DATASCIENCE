@@ -13,7 +13,7 @@ GLYdata = df[df["residueName"] == "GLY"]
 GLYX = PROdata[["phi", "psi"]].to_numpy()
 GLYX = GLYdata[["phi", "psi"]].to_numpy()
 
-
+#adding titles to the plot
 plt.title("Phi and psi combinations of GLY")
 plt.ylabel("psi")
 plt.xlabel("phi")
