@@ -1,14 +1,15 @@
-import math
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.cluster import DBSCAN, KMeans
+from sklearn.cluster import DBSCAN
 
+# Read from csv-files
 df = pd.read_csv("data_all.csv", header = 0)
 
-
+# Retrieve data from columns which match PRO and GLY
 PROdata = df[df["residueName"] == "PRO"]
 GLYdata = df[df["residueName"] == "GLY"]
 
+# Retrieving Phi and Psi values
 GLYX = PROdata[["phi", "psi"]].to_numpy()
 GLYX = GLYdata[["phi", "psi"]].to_numpy()
 
