@@ -1,3 +1,4 @@
+__author__ = "Malte Carlstedt, Johan Östling"
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
@@ -14,17 +15,19 @@ del data['chain']
 #turn data into a 2d numpy array
 X = data.to_numpy()
 
+# Using NearestNeighbors to find how many has n_neighbours of a certain value.
+closestNeighbours = NearestNeighbors(n_neighbors=60)
+# Fits our 2d array accordingly
+neighbours = closestNeighbours.fit(X)
+# Calculating distance and indices
+distance, indices = neighbours.kneighbors(X)
+# Sort the distances in order.
+distance = np.sort(distance, axis=0)
+# Using distance
+distance = distance[:,1]
 
-#Finding optimal value for epsilon
-nearest_neighbors = NearestNeighbors(n_neighbors=4)
-neighbors = nearest_neighbors.fit(X)
-
-distances, indices = neighbors.kneighbors(X)
-distances = np.sort(distances, axis=0)
-distances = distances[:,1]
-
-#fig = plt.figure(figsize=(5, 5))
-plt.plot(distances)
+# Plotting
+plt.plot(distance)
 plt.xlabel("Points")
 plt.ylabel("Distance")
 plt.title("Finding optimal Epsilon")
