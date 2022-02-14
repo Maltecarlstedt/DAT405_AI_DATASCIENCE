@@ -41,31 +41,33 @@ def readFiles(dir):
 listOfHam = numpy.array(readFiles(easy_ham_path))
 listOfSpam = numpy.array(readFiles(spam_path))
 
-hamlabels = numpy.zeros((len(listOfHam,1)))
-spamlabels = numpy.ones((len(listOfHam,1)))
+hamlabels = numpy.zeros((len(listOfHam),1))
+spamlabels = numpy.ones((len(listOfSpam),1))
 
-print(hamlabels)
-print(spamlabels)
 
-#listOfHam = listOfHam + hamlabels
-#listOfSpam = listOfSpam + spamlabels
+listOfHam = numpy.c_[listOfHam ,hamlabels]
+listOfSpam = numpy.c_[listOfSpam,spamlabels]
 
 
 #splits spam and ham mails to test and train sets
 hamTrain, hamTest = train_test_split(listOfHam, test_size=0.3, random_state=0)
 spamTrain, spamTest = train_test_split(listOfSpam, test_size=0.3, random_state=0)
 
-# Merging trainingsets 
-trainingSetX = hamTrain + spamTrain
-trainingSetY = spamTrain + hamTrain
-# Merging test sets
-testSet = hamTest + spamTest
+#Setting up the variables which will build the model
+
+x_train = numpy.concatenate((hamTrain[:,0], spamTrain[:,0]))
+y_train = numpy.concatenate((hamTrain[:,1], spamTrain[:,1]))
+x_test = numpy.concatenate((hamTest[:,0], spamTest[:,0]))
+y_test = numpy.concatenate((hamTest[:,1], spamTest[:,1]))
 
 
 vectorizer = CountVectorizer()
-vectorizer.fit(trainingSetX)
-training_set_vec = vectorizer.transform(trainingSetX)
-test_set_vec = vectorizer.transform(testSetY)
+vectorizer.fit(x_train)
+x_train_v = vectorizer.transform(x_train)
+x_test_v = vectorizer.transform(x_test)
 
-multiNomNb = MultinomialNB()
-multiNomNb.fit(training_set_vec,  )
+#Training and fitting the data with the multinomial naive bayes classifier
+mnb_classifier = MultinomialNB()
+mnb_classifier.fit(x_train_v, y_train)
+mnb_predictions = mnb_classifier.predict(x_test_v)
+print("Accuracy:",metrics.accuracy_score(y_test, mnb_predictions))
