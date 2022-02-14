@@ -61,6 +61,7 @@ x_test = numpy.concatenate((hamTest[:,0], spamTest[:,0]))
 y_test = numpy.concatenate((hamTest[:,1], spamTest[:,1]))
 
 
+# Vectorizing
 vectorizer = CountVectorizer()
 vectorizer.fit(x_train)
 x_train_v = vectorizer.transform(x_train)
