@@ -12,6 +12,7 @@ hard_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\
 easy_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\easy_ham"
 spam_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\spam"
 
+# Read the contents of the file in the dir
 def readFiles(dir):
   fileContents = []
   # Get all the files in our directory
