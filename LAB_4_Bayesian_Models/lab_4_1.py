@@ -10,13 +10,16 @@ from os import listdir
 from os.path import isfile, join
 from sklearn.feature_extraction.text import CountVectorizer
 import pandas as panda
+import numpy
 
-
+hard_ham_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\hard_ham"
+easy_ham_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\easy_ham"
+spam_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\spam"
 
 # Our paths. Need to use \\ otherwise Python interpets the path falsey.
-hard_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\hard_ham"
-easy_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\easy_ham"
-spam_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\\LAB_4_Bayesian_Models\\spam"
+#hard_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\hard_ham"
+#easy_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\easy_ham"
+#spam_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\\LAB_4_Bayesian_Models\\spam"
 
 # Read the contents of the file in the dir
 def readFiles(dir):
@@ -34,9 +37,21 @@ def readFiles(dir):
 
 
 
-listOfHam = readFiles(easy_ham_path)
-listOfSpam = readFiles(spam_path)
+#for every index there is a message
+listOfHam = numpy.array(readFiles(easy_ham_path))
+listOfSpam = numpy.array(readFiles(spam_path))
 
+hamlabels = numpy.zeros((len(listOfHam,1)))
+spamlabels = numpy.ones((len(listOfHam,1)))
+
+print(hamlabels)
+print(spamlabels)
+
+#listOfHam = listOfHam + hamlabels
+#listOfSpam = listOfSpam + spamlabels
+
+
+#splits spam and ham mails to test and train sets
 hamTrain, hamTest = train_test_split(listOfHam, test_size=0.3, random_state=0)
 spamTrain, spamTest = train_test_split(listOfSpam, test_size=0.3, random_state=0)
 
