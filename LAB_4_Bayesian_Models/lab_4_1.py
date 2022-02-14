@@ -40,17 +40,25 @@ listOfSpam = readFiles(spam_path)
 hamTrain, hamTest = train_test_split(listOfHam, test_size=0.3, random_state=0)
 spamTrain, spamTest = train_test_split(listOfSpam, test_size=0.3, random_state=0)
 
-# Merging trainingsets 
-trainingSetX = hamTrain + spamTrain
-trainingSetY = spamTrain + hamTrain
-# Merging test sets
-testSet = hamTest + spamTest
+# Training
+trainingSetX = hamTrain
+trainingSetY = spamTrain
+# Testing
+testSetX = hamTest
+testSetY = hamTrain
 
-
+# Vectorizing
 vectorizer = CountVectorizer()
 vectorizer.fit(trainingSetX)
+vectorizer.fit(testSetX)
 training_set_vec = vectorizer.transform(trainingSetX)
-test_set_vec = vectorizer.transform(testSetY)
+test_set_vec = vectorizer.transform(testSetX)
 
+# Multinomial NB
 multiNomNb = MultinomialNB()
-multiNomNb.fit(training_set_vec,  )
+print(training_set_vec.shape())
+print(len(trainingSetY))
+#multiNomNb.fit(training_set_vec, trainingSetY)
+#multiNomNb_predict = multiNomNb.predict(test_set_vec)
+
+#print("Accuracy:",metrics.accuracy_score(trainingSetY, multiNomNb_predict))
