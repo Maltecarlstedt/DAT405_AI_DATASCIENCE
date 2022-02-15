@@ -1,5 +1,3 @@
-# Read file function inspired from stackoverflow: https://stackoverflow.com/questions/3207219/how-do-i-list-all-files-of-a-directory
-
 __author__ = "Malte Carlstedt, Johan Östling"
 
 import os
@@ -10,6 +8,8 @@ from os import listdir
 from os.path import isfile, join
 from sklearn.feature_extraction.text import CountVectorizer
 import numpy
+import collections
+import matplotlib.pyplot as plt
 
 
 # For Johans Computer
@@ -45,49 +45,27 @@ def readFiles(dir):
 listOfHam = numpy.array(readFiles(hard_ham_path)) # Uncomment for hard ham
 listOfSpam = numpy.array(readFiles(spam_path))
 
-# Creates a list with zeros of length listOfHam
-hamlabels = numpy.zeros((len(listOfHam),1))
-# Creates a list with ones of length listOfSpam
-spamlabels = numpy.ones((len(listOfSpam),1))
+#merging ham and spam mails
+allMails = [*listOfHam,*listOfSpam]
 
-# Add the labels as columns. Need to add labels to be able to differentiate spam and no spam.
-# Label 1 = spam, Label 0 = no spam.
-listOfHam = numpy.c_[listOfHam ,hamlabels]
-listOfSpam = numpy.c_[listOfSpam,spamlabels]
+flatlist = [word for email in allMails for word in email.split(" ")]  # A flat list of all words from all emails
 
 
-# Splits spam and ham data to test and train sets. using random_state=0 to get same result each time.
-hamTrain, hamTest = train_test_split(listOfHam, test_size=0.3, random_state=0)
-spamTrain, spamTest = train_test_split(listOfSpam, test_size=0.3, random_state=0)
+counts_dict = collections.Counter(flatlist) #counts number of apperases of every word in the mails
 
+mostCommonWords = []
+numOfApperanses = []
 
-# Setting up variables that the model will use. Choosing data by specifying each column.
-# X are the mails. Y is the label.
-# Using numpy.concatenate to join the lists.
-x_train = numpy.concatenate((hamTrain[:,0], spamTrain[:,0]))
-y_train = numpy.concatenate((hamTrain[:,1], spamTrain[:,1]))
-x_test = numpy.concatenate((hamTest[:,0], spamTest[:,0]))
-y_test = numpy.concatenate((hamTest[:,1], spamTest[:,1]))
+for word, count in counts_dict.most_common(30):
+    mostCommonWords.append(word)
+    numOfApperanses.append(count)
+    
+mostCommonWords.pop(0)
+numOfApperanses.pop(0)
 
-
-# Using CountVectorizer to transform our emails into vectors to be able to classify text.
-vectorizer = CountVectorizer()
-vectorizer.fit(x_train)
-trained_x_vector = vectorizer.transform(x_train)
-x_test_vector = vectorizer.transform(x_test)
-
-"""
-# Using Naïve Baye multinomial classifier to train our datasets.
-multiNB = MultinomialNB()
-multiNB.fit(trained_x_vector, y_train)
-multiNB_predict = multiNB.predict(x_test_vector)
-print("Accuracy Multinomial:",metrics.accuracy_score(y_test, multiNB_predict))
-
-# Using Naïve Baye bernoulli classifier to train our datasets.
-bernoulliNB = BernoulliNB(binarize=1.0)
-bernoulliNB.fit(trained_x_vector,y_train)
-bernoulliNB_predict = bernoulliNB.predict(x_test_vector)
-print("Accuracy Bernoulli:",metrics.accuracy_score(y_test, bernoulliNB_predict))
-"""
-
-print(trained_x_vector.toarray())
+fig = plt.figure()
+plt.bar(list(mostCommonWords),list(numOfApperanses))
+plt.xlabel("words")
+plt.ylabel("Number of apperanses")
+plt.title("top 30 most common words in ham and spam mails")
+plt.show()
