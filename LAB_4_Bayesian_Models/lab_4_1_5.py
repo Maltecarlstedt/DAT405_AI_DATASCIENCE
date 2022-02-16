@@ -3,7 +3,6 @@
 __author__ = "Malte Carlstedt, Johan Östling"
 
 import os
-from more_itertools import lstrip
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import BernoulliNB, MultinomialNB
 from sklearn import metrics
@@ -11,8 +10,6 @@ from os import listdir
 from os.path import isfile, join
 from sklearn.feature_extraction.text import CountVectorizer
 import numpy
-import collections
-
 
 # For Johans Computer
 #hard_ham_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\hard_ham"
@@ -40,16 +37,31 @@ def readFiles(dir):
       fileContents.append(file.read())
   return fileContents
 
-
-
 # Read all files in a directory. Convert into a numpy array and add to list.
 #listOfHam = numpy.array(readFiles(easy_ham_path)) # Uncomment for easy ham
-listOfHam = numpy.array(readFiles(hard_ham_path)) # Uncomment for hard ham
+listOfHam = [*numpy.array(readFiles(hard_ham_path)), *numpy.array(readFiles(easy_ham_path))] # Uncomment for hard ham
 listOfSpam = numpy.array(readFiles(spam_path))
 
+# Return everything in the string that comes after <html>
+def removeHeader(email):
+  index = email.find("</head>")
+  return email[index:] 
 
-def removeHeader(s):
-  return s.lstrip("<html>")
+# Return everything in the string that comes before </body>
+def removeFooter(email):
+  index = email.find("</body>")
+  return email[:index]
+
+# Goes through every email and trims their footer and headers.
+def removeFooterAndHeader(email):
+  for i in range(len(email)-1):
+     email[i] = removeHeader(removeFooter(email[i]))
+  return email
+
+# Remove Footer and header for the list of spam
+removeFooterAndHeader(listOfSpam)
+# Remove Footer and header for the list of ham
+removeFooterAndHeader(listOfHam)
 
 
 # Creates a list with zeros of length listOfHam
@@ -62,7 +74,7 @@ spamlabels = numpy.ones((len(listOfSpam),1))
 listOfHamNumpy = numpy.c_[listOfHam ,hamlabels]
 listOfSpamNumpy = numpy.c_[listOfSpam,spamlabels]
 
-"""
+
 # Splits spam and ham data to test and train sets. using random_state=0 to get same result each time.
 hamTrain, hamTest = train_test_split(listOfHamNumpy, test_size=0.3, random_state=0)
 spamTrain, spamTest = train_test_split(listOfSpamNumpy, test_size=0.3, random_state=0)
@@ -77,7 +89,7 @@ x_test = numpy.concatenate((hamTest[:,0], spamTest[:,0]))
 y_test = numpy.concatenate((hamTest[:,1], spamTest[:,1]))
 
 # Using CountVectorizer to transform our emails into vectors to be able to classify text.
-vectorizer = CountVectorizer(max_df = 0.85, min_df = 3, stop_words="english")
+vectorizer = CountVectorizer(max_df=0.85, min_df=3, stop_words="english")
 vectorizer.fit(x_train)
 trained_x_vector = vectorizer.transform(x_train)
 x_test_vector = vectorizer.transform(x_test)
@@ -94,4 +106,3 @@ bernoulliNB = BernoulliNB(binarize=1.0)
 bernoulliNB.fit(trained_x_vector,y_train)
 bernoulliNB_predict = bernoulliNB.predict(x_test_vector)
 print("Accuracy Bernoulli:",metrics.accuracy_score(y_test, bernoulliNB_predict))
-"""
