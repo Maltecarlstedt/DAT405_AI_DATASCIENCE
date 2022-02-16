@@ -39,7 +39,6 @@ def readFiles(dir):
   return fileContents
 
 
-
 # Read all files in a directory. Convert into a numpy array and add to list.
 #listOfHam = numpy.array(readFiles(easy_ham_path)) # Uncomment for easy ham
 listOfHam = numpy.array(readFiles(hard_ham_path)) # Uncomment for hard ham
@@ -52,14 +51,14 @@ wordsSpam = [word for email in listOfSpam for word in email.split(" ")]  #list o
 word_count_spam = collections.Counter(wordsSpam) #counts number of appearances of every word in spam mails
 word_count_ham = collections.Counter(wordsHam) #counts number of appearances of every word in ham mails. 
 
-#to make a bar plot we add the most common words to one list and the number of appearances to another. 
+#to make a bar chart we add the most common words to one list and the number of appearances to another. 
 mostCommonWordsHam = []
 numOfApperansesHam = []
 
 mostCommonWordsSpam = []
 numOfApperansesSpam = []
 
-#for the most uncommmon words we are not interested in doing a bor plot, therefore the number of appearances is not relevant
+#for the most uncommmon words we are not interested in doing a bar chart, therefore the number of appearances is not relevant
 mostUnCommonWordsHam = []
 mostUnCommonWordsSpam = []
 
