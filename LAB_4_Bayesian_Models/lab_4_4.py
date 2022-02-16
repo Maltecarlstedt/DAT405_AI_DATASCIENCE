@@ -13,15 +13,15 @@ import matplotlib.pyplot as plt
 
 
 # For Johans Computer
-hard_ham_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\hard_ham"
-easy_ham_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\easy_ham"
-spam_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\spam"
+#hard_ham_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\hard_ham"
+#easy_ham_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\easy_ham"
+#spam_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\spam"
 
 # For Maltes Computer
 # Our paths. Need to use \\ otherwise Python interpets the path falsey.
-#hard_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\hard_ham"
-#easy_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\easy_ham"
-#spam_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\\LAB_4_Bayesian_Models\\spam"
+hard_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\hard_ham"
+easy_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\easy_ham"
+spam_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\\LAB_4_Bayesian_Models\\spam"
 
 # Read the contents of the file in the dir
 def readFiles(dir):
@@ -45,27 +45,26 @@ def readFiles(dir):
 listOfHam = numpy.array(readFiles(hard_ham_path)) # Uncomment for hard ham
 listOfSpam = numpy.array(readFiles(spam_path))
 
-#merging ham and spam mails
-allMails = [*listOfHam,*listOfSpam]
+#flatlistHam = [word for email in listOfHam for word in email.split(" ")]  # A flat list of all words from all emails
 
-flatlist = [word for email in allMails for word in email.split(" ")]  # A flat list of all words from all emails
+flatlistSpam = [word for email in listOfSpam for word in email.split(" ")]  # A flat list of all words
 
-
-counts_dict = collections.Counter(flatlist) #counts number of apperases of every word in the mails
+word_count = collections.Counter(flatlistSpam) #counts number of apperases of every word in the mails
 
 mostCommonWords = []
 numOfApperanses = []
 
-for word, count in counts_dict.most_common(30):
+for word, count in word_count.most_common():
     mostCommonWords.append(word)
     numOfApperanses.append(count)
-    
+
+# Removing whitespace    
 mostCommonWords.pop(0)
 numOfApperanses.pop(0)
-
+#c.most_common()[:-n-1:-1]   
 fig = plt.figure()
 plt.bar(list(mostCommonWords),list(numOfApperanses))
 plt.xlabel("words")
 plt.ylabel("Number of apperanses")
-plt.title("top 30 most common words in ham and spam mails")
+plt.title("Top 15 most common words in all spam emails")
 plt.show()
