@@ -13,15 +13,15 @@ import matplotlib.pyplot as plt
 
 
 # For Johans Computer
-#hard_ham_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\hard_ham"
-#easy_ham_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\easy_ham"
-#spam_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\spam"
+hard_ham_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\hard_ham"
+easy_ham_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\easy_ham"
+spam_path = "C:\\Users\johan\OneDrive\Dokument\Introduction to data science and AI\DAT405_AI_DATASCIENCE\LAB_4_Bayesian_Models\spam"
 
 # For Maltes Computer
 # Our paths. Need to use \\ otherwise Python interpets the path falsey.
-hard_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\hard_ham"
-easy_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\easy_ham"
-spam_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\\LAB_4_Bayesian_Models\\spam"
+#hard_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\hard_ham"
+#easy_ham_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\LAB_4_Bayesian_Models\\easy_ham"
+#spam_path = "C:\\Users\Malte Carlstedt\\DAT405_AI_DS\\LAB_4_Bayesian_Models\\spam"
 
 # Read the contents of the file in the dir
 def readFiles(dir):
@@ -45,34 +45,42 @@ def readFiles(dir):
 listOfHam = numpy.array(readFiles(hard_ham_path)) # Uncomment for hard ham
 listOfSpam = numpy.array(readFiles(spam_path))
 
-flatlistHam = [word for email in listOfHam for word in email.split(" ")]  # A flat list of all words from all emails
+wordsHam = [word for email in listOfHam for word in email.split(" ")]  #list of all words from ham
 
-flatlistSpam = [word for email in listOfSpam for word in email.split(" ")]  # A flat list of all words
+wordsSpam = [word for email in listOfSpam for word in email.split(" ")]  #list of all words from spam
 
-word_count = collections.Counter(flatlistSpam) #counts number of apperases of every word in the mails
-word_count2 = collections.Counter(flatlistHam)
+word_count_spam = collections.Counter(wordsSpam) #counts number of appearances of every word in spam mails
+word_count_ham = collections.Counter(wordsHam) #counts number of appearances of every word in ham mails. 
 
+#to make a bar plot we add the most common words to one list and the number of appearances to another. 
 mostCommonWordsHam = []
 numOfApperansesHam = []
 
 mostCommonWordsSpam = []
 numOfApperansesSpam = []
 
-mostUnCommonWords = []
+#for the most uncommmon words we are not interested in doing a bor plot, therefore the number of appearances is not relevant
+mostUnCommonWordsHam = []
+mostUnCommonWordsSpam = []
 
-for word, count in word_count.most_common(16):
+#returns top 16 most common words
+for word, count in word_count_spam.most_common(16):
     mostCommonWordsSpam.append(word)
     numOfApperansesSpam.append(count)
 
-for word, count in word_count2.most_common(16):
+for word, count in word_count_ham.most_common(16):
     mostCommonWordsHam.append(word)
     numOfApperansesHam.append(count)
 
-"""
-for word, count in word_count.items():
+#return words that only occur once
+for word, count in word_count_spam.items():
     if count == 1:
-      mostUnCommonWords.append(word)
-"""
+      mostUnCommonWordsSpam.append(word)
+
+for word, count in word_count_ham.items():
+    if count == 1:
+      mostUnCommonWordsHam.append(word)
+
 
 # Removing whitespace    
 mostCommonWordsHam.pop(0)
@@ -81,14 +89,9 @@ numOfApperansesHam.pop(0)
 mostCommonWordsSpam.pop(0)
 numOfApperansesSpam.pop(0)
 
-
-
+#returning a list with the intersection of the most common words in spam and ham. 
 matchingWords = list(set(mostCommonWordsHam) & set(mostCommonWordsSpam))
-print(mostCommonWordsSpam)
-print("______________________")
-print(mostCommonWordsHam)
-print("______________________")
-print(matchingWords)
+
 """
 fig = plt.figure()
 plt.bar(list(mostCommonWords),list(numOfApperanses))
