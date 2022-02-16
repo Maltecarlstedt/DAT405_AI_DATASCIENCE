@@ -45,26 +45,55 @@ def readFiles(dir):
 listOfHam = numpy.array(readFiles(hard_ham_path)) # Uncomment for hard ham
 listOfSpam = numpy.array(readFiles(spam_path))
 
-#flatlistHam = [word for email in listOfHam for word in email.split(" ")]  # A flat list of all words from all emails
+flatlistHam = [word for email in listOfHam for word in email.split(" ")]  # A flat list of all words from all emails
 
 flatlistSpam = [word for email in listOfSpam for word in email.split(" ")]  # A flat list of all words
 
 word_count = collections.Counter(flatlistSpam) #counts number of apperases of every word in the mails
+word_count2 = collections.Counter(flatlistHam)
 
-mostCommonWords = []
-numOfApperanses = []
+mostCommonWordsHam = []
+numOfApperansesHam = []
 
-for word, count in word_count.most_common():
-    mostCommonWords.append(word)
-    numOfApperanses.append(count)
+mostCommonWordsSpam = []
+numOfApperansesSpam = []
+
+mostUnCommonWords = []
+
+for word, count in word_count.most_common(16):
+    mostCommonWordsSpam.append(word)
+    numOfApperansesSpam.append(count)
+
+for word, count in word_count2.most_common(16):
+    mostCommonWordsHam.append(word)
+    numOfApperansesHam.append(count)
+
+"""
+for word, count in word_count.items():
+    if count == 1:
+      mostUnCommonWords.append(word)
+"""
 
 # Removing whitespace    
-mostCommonWords.pop(0)
-numOfApperanses.pop(0)
-#c.most_common()[:-n-1:-1]   
+mostCommonWordsHam.pop(0)
+numOfApperansesHam.pop(0)
+
+mostCommonWordsSpam.pop(0)
+numOfApperansesSpam.pop(0)
+
+
+
+matchingWords = list(set(mostCommonWordsHam) & set(mostCommonWordsSpam))
+print(mostCommonWordsSpam)
+print("______________________")
+print(mostCommonWordsHam)
+print("______________________")
+print(matchingWords)
+"""
 fig = plt.figure()
 plt.bar(list(mostCommonWords),list(numOfApperanses))
 plt.xlabel("words")
 plt.ylabel("Number of apperanses")
 plt.title("Top 15 most common words in all spam emails")
 plt.show()
+"""
