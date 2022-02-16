@@ -1,7 +1,7 @@
 # Read file function inspired from stackoverflow: https://stackoverflow.com/questions/3207219/how-do-i-list-all-files-of-a-directory
 
 __author__ = "Malte Carlstedt, Johan Östling"
-
+# Below follow code related to question 5 in the assignment.
 import os
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import BernoulliNB, MultinomialNB

@@ -1,7 +1,7 @@
 # Read file function inspired from stackoverflow: https://stackoverflow.com/questions/3207219/how-do-i-list-all-files-of-a-directory
 
 __author__ = "Malte Carlstedt, Johan Östling"
-
+# Below follow code related to question 4B in the assignment.
 import os
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import BernoulliNB, MultinomialNB
@@ -10,6 +10,7 @@ from os import listdir
 from os.path import isfile, join
 from sklearn.feature_extraction.text import CountVectorizer
 import numpy
+import collections
 
 
 # For Johans Computer
@@ -39,6 +40,7 @@ def readFiles(dir):
   return fileContents
 
 
+
 # Read all files in a directory. Convert into a numpy array and add to list.
 #listOfHam = numpy.array(readFiles(easy_ham_path)) # Uncomment for easy ham
 listOfHam = numpy.array(readFiles(hard_ham_path)) # Uncomment for hard ham
@@ -51,13 +53,13 @@ spamlabels = numpy.ones((len(listOfSpam),1))
 
 # Add the labels as columns. Need to add labels to be able to differentiate spam and no spam.
 # Label 1 = spam, Label 0 = no spam.
-listOfHam = numpy.c_[listOfHam ,hamlabels]
-listOfSpam = numpy.c_[listOfSpam,spamlabels]
+listOfHamNumpy = numpy.c_[listOfHam ,hamlabels]
+listOfSpamNumpy = numpy.c_[listOfSpam,spamlabels]
 
 
 # Splits spam and ham data to test and train sets. using random_state=0 to get same result each time.
-hamTrain, hamTest = train_test_split(listOfHam, test_size=0.3, random_state=0)
-spamTrain, spamTest = train_test_split(listOfSpam, test_size=0.3, random_state=0)
+hamTrain, hamTest = train_test_split(listOfHamNumpy, test_size=0.3, random_state=0)
+spamTrain, spamTest = train_test_split(listOfSpamNumpy, test_size=0.3, random_state=0)
 
 
 # Setting up variables that the model will use. Choosing data by specifying each column.
@@ -68,14 +70,64 @@ y_train = numpy.concatenate((hamTrain[:,1], spamTrain[:,1]))
 x_test = numpy.concatenate((hamTest[:,0], spamTest[:,0]))
 y_test = numpy.concatenate((hamTest[:,1], spamTest[:,1]))
 
+wordsHam = [word for email in listOfHam for word in email.split(" ")]  #list of all words from ham
+
+wordsSpam = [word for email in listOfSpam for word in email.split(" ")]  #list of all words from spam
+
+word_count_spam = collections.Counter(wordsSpam) #counts number of appearances of every word in spam mails
+word_count_ham = collections.Counter(wordsHam) #counts number of appearances of every word in ham mails. 
+
+#to make a bar chart we add the most common words to one list and the number of appearances to another. 
+mostCommonWordsHam = []
+numOfApperansesHam = []
+
+mostCommonWordsSpam = []
+numOfApperansesSpam = []
+
+#for the most uncommmon words we are not interested in doing a bar chart, therefore the number of appearances is not relevant
+mostUnCommonWordsHam = []
+mostUnCommonWordsSpam = []
+
+#returns top 16 most common words
+for word, count in word_count_spam.most_common(16):
+    mostCommonWordsSpam.append(word)
+    numOfApperansesSpam.append(count)
+
+for word, count in word_count_ham.most_common(16):
+    mostCommonWordsHam.append(word)
+    numOfApperansesHam.append(count)
+
+#return words that only occur once
+for word, count in word_count_spam.items():
+    if count == 1:
+      mostUnCommonWordsSpam.append(word)
+
+for word, count in word_count_ham.items():
+    if count == 1:
+      mostUnCommonWordsHam.append(word)
+
+
+# Removing whitespace    
+mostCommonWordsHam.pop(0)
+numOfApperansesHam.pop(0)
+
+mostCommonWordsSpam.pop(0)
+numOfApperansesSpam.pop(0)
+
+#returning a list with the intersection of the most common/uncommon words in spam and ham. 
+matchingCommonWords = list(set(mostCommonWordsHam) & set(mostCommonWordsSpam))
+matchingUncommonWords = list(set(mostUnCommonWordsHam) & set(mostUnCommonWordsSpam))
+
+# Combining the lists
+wordsToFilter = [*matchingCommonWords, *matchingUncommonWords]
 
 # Using CountVectorizer to transform our emails into vectors to be able to classify text.
-vectorizer = CountVectorizer()
+vectorizer = CountVectorizer(max_df = 0.85, min_df = 3, stop_words="english")
 vectorizer.fit(x_train)
 trained_x_vector = vectorizer.transform(x_train)
 x_test_vector = vectorizer.transform(x_test)
 
-"""
+
 # Using Naïve Baye multinomial classifier to train our datasets.
 multiNB = MultinomialNB()
 multiNB.fit(trained_x_vector, y_train)
@@ -87,5 +139,4 @@ bernoulliNB = BernoulliNB(binarize=1.0)
 bernoulliNB.fit(trained_x_vector,y_train)
 bernoulliNB_predict = bernoulliNB.predict(x_test_vector)
 print("Accuracy Bernoulli:",metrics.accuracy_score(y_test, bernoulliNB_predict))
-"""
 

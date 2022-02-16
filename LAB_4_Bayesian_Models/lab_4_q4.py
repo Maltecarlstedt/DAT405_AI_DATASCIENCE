@@ -1,15 +1,14 @@
+# Read file function inspired from stackoverflow: https://stackoverflow.com/questions/3207219/how-do-i-list-all-files-of-a-directory
 __author__ = "Malte Carlstedt, Johan Östling"
 
+# Below follow code related to question 4 in the assignment.
 import os
-from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import BernoulliNB, MultinomialNB
-from sklearn import metrics
 from os import listdir
 from os.path import isfile, join
-from sklearn.feature_extraction.text import CountVectorizer
+from matplotlib import pyplot as plt
 import numpy
 import collections
-import matplotlib.pyplot as plt
+
 
 
 # For Johans Computer
@@ -91,11 +90,11 @@ numOfApperansesSpam.pop(0)
 #returning a list with the intersection of the most common words in spam and ham. 
 matchingWords = list(set(mostCommonWordsHam) & set(mostCommonWordsSpam))
 
-"""
+
 fig = plt.figure()
-plt.bar(list(mostCommonWords),list(numOfApperanses))
+# Switch to mostCommonWordsSpam/numOfApperansesSpam when needed.
+plt.bar(list(mostCommonWordsHam),list(numOfApperansesHam))
 plt.xlabel("words")
 plt.ylabel("Number of apperanses")
 plt.title("Top 15 most common words in all spam emails")
 plt.show()
-"""
