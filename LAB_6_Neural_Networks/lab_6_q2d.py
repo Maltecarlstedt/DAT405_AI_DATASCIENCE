@@ -8,8 +8,8 @@ from keras import backend as K
 import matplotlib.pyplot as plt
 import numpy as np
 from keras import regularizers
-import pandas as panda
-
+import pandas as pd
+"""
 #hyper-parameters data-loading and formatting
 batch_size = 128
 num_classes = 10
@@ -69,7 +69,17 @@ for i in range(5):
     print(score)
 
 print(score)
+"""
+#using pandas to store accurcy from each iteration. 
+#panda.DataFrame(score, columns=["val_loss", "val_accuracy"]).to_csv("output_scores.csv")
 
+df = pd.read_csv("output_scores.csv")
+val_accuracy = np.array(df["val_accuracy"])
 
-panda.DataFrame(score, columns=["val_loss", "val_accuracy"]).to_csv("output_scores.csv")
+means = [] #five means for each regularizers
+standardD = [] #five standard deviations for each regularizers
 
+for i in range(5):
+    accuracy = [val_accuracy[i], val_accuracy[i+1 ],val_accuracy[i+2]]
+    means.append(accuracy.mean())
+    i=i+3
