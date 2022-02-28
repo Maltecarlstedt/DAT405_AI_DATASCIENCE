@@ -1,4 +1,5 @@
 from __future__ import print_function
+from turtle import st
 from tensorflow import keras
 from keras.datasets import mnist
 from keras.models import Sequential
@@ -80,6 +81,10 @@ means = [] #five means for each regularizers
 standardD = [] #five standard deviations for each regularizers
 
 for i in range(5):
-    accuracy = [val_accuracy[i], val_accuracy[i+1 ],val_accuracy[i+2]]
+    accuracy = np.array([val_accuracy[i], val_accuracy[i+1 ],val_accuracy[i+2]])
     means.append(accuracy.mean())
+    standardD.append(accuracy.std())
     i=i+3
+
+print(means)
+print(standardD)
