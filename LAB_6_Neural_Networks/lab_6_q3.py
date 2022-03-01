@@ -56,7 +56,7 @@ model.add(Flatten())
 model.add(Dense(num_classes,activation='softmax'))
 
 model.compile(loss=keras.losses.categorical_crossentropy,
-optimizer=keras.optimizers.SGD(lr = 0.1),
+optimizer=keras.optimizers.SGD(lr = 0.1),   
 metrics=['accuracy'],)
 
 fit_info = model.fit(x_train, y_train,

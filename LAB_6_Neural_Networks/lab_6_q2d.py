@@ -1,7 +1,3 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-"""
 from __future__ import print_function
 from turtle import st
 from tensorflow import keras
@@ -14,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from keras import regularizers
 import pandas as pd
-
+"""
 #hyper-parameters data-loading and formatting
 batch_size = 128
 num_classes = 10
@@ -78,12 +74,8 @@ print(score)
 #using pandas to store accurcy from each iteration. 
 #panda.DataFrame(score, columns=["val_loss", "val_accuracy"]).to_csv("output_scores.csv")
 
-#df = pd.read_csv("LAB_6_Neural_Networks/output_scores.csv")
 df = pd.read_csv("output_scores.csv")
 val_accuracy = np.array(df["val_accuracy"])
-val_loss = np.array(df["val_loss"])
-
-
 
 means = [] #five means for each regularizers
 standardD = [] #five standard deviations for each regularizers
@@ -94,19 +86,5 @@ for i in range(5):
     standardD.append(accuracy.std())
     i=i+3
 
-reg_factors = np.linspace(0.000001, 0.001, 5)
-
-#print(means)
-#print(standardD)
-
-
-(_, caps, _) = plt.errorbar(reg_factors, means, yerr = standardD, fmt='o', markersize=8, capsize=20)
-for cap in caps:
-    cap.set_markeredgewidth(1)
-
-print(max(val_accuracy))
-
-plt.title("Validation Accuracy for different regularization factor")
-plt.ylabel("Validation accuracy")
-plt.xlabel("Regularization factor")
-plt.show()
+print(means)
+print(standardD)
