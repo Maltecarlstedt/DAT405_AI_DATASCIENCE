@@ -50,10 +50,10 @@ y_train = keras.utils.np_utils.to_categorical(lbl_train, num_classes)
 y_test = keras.utils.np_utils.to_categorical(lbl_test, num_classes)
 
 #data preparation
-
+"""
 denoisedScore = []
 #for denoised q2
-for i in [0, 0.2, 0.4, 0.6, 0.8, 1]:
+for i in [0.52631579, 0.57894737, 0.63157895, 0.68421053, 0.73684211, 0.78947368, 0.84210526, 0.89473684, 0.94736842, 1]:
 
     flattened_x_train = x_train.reshape(-1,784)
     flattened_x_train_seasoned = salt_and_pepper(flattened_x_train, noise_level=i)
@@ -119,7 +119,7 @@ for i in [0, 0.2, 0.4, 0.6, 0.8, 1]:
     denoisedScore.append(score[1])
 print(denoisedScore)
 
-"""
+
     n = 10  # How many digits we will display
     plt.figure(figsize=(20, 4))
     for i in range(n):
@@ -139,10 +139,10 @@ print(denoisedScore)
     print(i)
     plt.show()
 """
-"""
+
 #for seasoned images
 seasonedScore = []
-for i in [0, 0.2, 0.4, 0.6, 0.8, 1]:
+for i in [0.52631579, 0.57894737, 0.63157895, 0.68421053, 0.73684211, 0.78947368, 0.84210526, 0.89473684, 0.94736842, 1]:
 
     flattened_x_train = x_train.reshape(-1,784)
     flattened_x_train_seasoned = salt_and_pepper(flattened_x_train, noise_level=i)
@@ -175,4 +175,3 @@ for i in [0, 0.2, 0.4, 0.6, 0.8, 1]:
     seasonedScore.append(score[1])
 
 print(seasonedScore)
-"""
