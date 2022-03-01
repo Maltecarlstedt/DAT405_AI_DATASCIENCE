@@ -16,6 +16,7 @@ epochs = 10
 
 img_rows, img_cols = 28, 28
 
+
 (x_train, lbl_train), (x_test, lbl_test) = mnist.load_data()
 
 if K.image_data_format() == 'channels_first':
@@ -70,7 +71,7 @@ plt.xlabel("Epochs")
 plt.plot(x,y)
 plt.show()
 
-"""
+
 # For plotting validation accuracy.
 plt.title("Plot for validation accuracy")
 x = np.arange(epochs)
@@ -80,3 +81,4 @@ plt.ylabel("Validation accuracy in percentage %")
 plt.xlabel("Epochs")
 plt.plot(x,y)
 plt.show()
+"""
