@@ -51,12 +51,10 @@ y_train = keras.utils.np_utils.to_categorical(lbl_train, num_classes)
 y_test = keras.utils.np_utils.to_categorical(lbl_test, num_classes)
 """
 #data preparation
-
+"""
 denoisedScore = []
 #for denoised q2
-for i in [ 0, 0.05263158, 0.10526316, 0.15789474, 0.21052632, 0.26315789
- ,0.31578947, 0.36842105, 0.42105263, 0.47368421]:
- 
+for i in [0.52631579, 0.57894737, 0.63157895, 0.68421053, 0.73684211, 0.78947368, 0.84210526, 0.89473684, 0.94736842, 1]:
 
     flattened_x_train = x_train.reshape(-1,784)
     flattened_x_train_seasoned = salt_and_pepper(flattened_x_train, noise_level=i)
@@ -122,12 +120,30 @@ for i in [ 0, 0.05263158, 0.10526316, 0.15789474, 0.21052632, 0.26315789
     denoisedScore.append(score[1])
 print(denoisedScore)
 
+
+    n = 10  # How many digits we will display
+    plt.figure(figsize=(20, 4))
+    for i in range(n):
+        # Display original
+        ax = plt.subplot(2, n, i + 1)
+        plt.imshow(flattened_x_test_seasoneed[i].reshape(28, 28))
+        plt.gray()
+        ax.get_xaxis().set_visible(False)
+        ax.get_yaxis().set_visible(False)
+
+        # Display reconstruction
+        ax = plt.subplot(2, n, i + 1 + n)
+        plt.imshow(decoded_imgs[i].reshape(28, 28))
+        plt.gray()
+        ax.get_xaxis().set_visible(False)
+        ax.get_yaxis().set_visible(False)
+    print(i)
+    plt.show()
 """
 
 #for seasoned images
 seasonedScore = []
-for i in [ 0, 0.05263158, 0.10526316, 0.15789474, 0.21052632, 0.26315789
- ,0.31578947, 0.36842105, 0.42105263, 0.47368421]:
+for i in [0.52631579, 0.57894737, 0.63157895, 0.68421053, 0.73684211, 0.78947368, 0.84210526, 0.89473684, 0.94736842, 1]:
 
     flattened_x_train = x_train.reshape(-1,784)
     flattened_x_train_seasoned = salt_and_pepper(flattened_x_train, noise_level=i)
