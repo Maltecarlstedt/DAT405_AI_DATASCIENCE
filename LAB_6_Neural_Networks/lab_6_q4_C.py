@@ -40,6 +40,7 @@ else:
 # Setting up
 x_train = x_train.astype('float32')
 x_test = x_test.astype('float32')
+# Normalizing pixels are represented as value between 0-255. We want only values between 0-1
 x_train /= 255
 x_test /= 255
 y_train = keras.utils.np_utils.to_categorical(lbl_train, num_classes)
