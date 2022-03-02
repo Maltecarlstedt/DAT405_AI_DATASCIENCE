@@ -8,17 +8,17 @@ from keras import backend as K
 import matplotlib.pyplot as plt
 import numpy as np
 
-#hyper-parameters data-loading and formatting
 
+# Parameters
 batch_size = 128
 num_classes = 10
 epochs = 10
-
 img_rows, img_cols = 28, 28
 
-
+# Load the mnist dataset
 (x_train, lbl_train), (x_test, lbl_test) = mnist.load_data()
 
+#Formatting
 if K.image_data_format() == 'channels_first':
     x_train = x_train.reshape(x_train.shape[0], 1, img_rows, img_cols)
     x_test = x_test.reshape(x_test.shape[0], 1, img_rows, img_cols)
@@ -28,26 +28,23 @@ else:
     x_test = x_test.reshape(x_test.shape[0], img_rows, img_cols, 1)
     input_shape = (img_rows, img_cols, 1)
 
-#preprocessing
 
+# Setting up
 x_train = x_train.astype('float32') 
 x_test = x_test.astype('float32')
-
 x_train /= 255
 x_test /= 255
-
 y_train = keras.utils.to_categorical(lbl_train, num_classes)
 y_test = keras.utils.to_categorical(lbl_test, num_classes)
 
-## Define model ##
+# Defining model
 model = Sequential()
-
 model.add(Flatten())
 model.add(Dense(64, activation = 'relu'))
 model.add(Dense(64, activation = 'relu'))
 model.add(Dense(num_classes, activation='softmax'))
 
-
+# Compiling the model
 model.compile(loss=keras.losses.categorical_crossentropy,
                optimizer=keras.optimizers.SGD(lr = 0.1),
         metrics=['accuracy'],)
@@ -60,8 +57,10 @@ fit_info = model.fit(x_train, y_train,
 score = model.evaluate(x_test, y_test, verbose=0)
 print('Test loss: {}, Test accuracy {}'.format(score[0], score[1]))
 
+
+# Below follows simple plotting for question 2c.
 """
-# For printing accuracy
+# For ploting accuracy
 x = np.arange(epochs)
 y = np.array(fit_info.history["accuracy"])
 
